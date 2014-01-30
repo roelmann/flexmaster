@@ -1,0 +1,221 @@
+/* General - ie. independent of any flexbox support *
+ *--------------------------------------------------*/
+
+#block-region-side-post, #block-region-side-pre {
+    min-width:220px;
+    margin:0 0.5em;
+}
+.mainonly {
+    display:none;
+}
+
+/* no-flexbox Fallback *
+ *---------------------*/
+.no-js .browserwarningflexleg, .no-flexbox .browserwarningflexleg {
+    display:none;
+}
+
+/* flexbox and prefixed fallbacks *
+ * ------------------------------ */
+.flexboxlegacy .browserwarningnoflex {
+    display:none;
+}
+.flexbox .browserwarningnoflex, .flexbox .browserwarningflexleg {
+    display:none;
+}
+
+.flexible {
+    display: -webkit-box;
+        -webkit-box-direction: normal;
+        -webkit-box-orient: horizontal;
+        -webkit-box-pack: start;
+        -webkit-box-align: start;
+
+    display: -moz-box;
+        -moz-box-direction: normal;
+        -moz-box-orient: horizontal;
+        -moz-box-pack: start;
+        -moz-box-align: start;
+
+    display: -ms-flexbox;
+        -ms-flex-direction: row;
+        -ms-flex-wrap: nowrap;
+        -ms-flex-pack: start;
+        -ms-flex-line-pack: stretch;
+        -ms-flex-align: start;
+
+    display: -webkit-flex;
+        -webkit-flex-direction: row;
+        -webkit-flex-wrap: nowrap;
+        -webkit-justify-content: flex-start;
+        -webkit-align-content: stretch;
+        -webkit-align-items: flex-start;
+
+    display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: flex-start;
+}
+.dir-rtl .flexible {
+    -webkit-box-direction: reverse;
+    -moz-box-direction: reverse;
+    -webkit-flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+}
+/* Order 1,3,5 is used so fewer changes are needed when moving sidebars.
+ * Pre-Main-Post -> pre=1, main=3, post=5
+ * Main-Pre-Post -> main=3, pre=4, post=5
+ * Pre-Post-Main -> pre=1, post=2, main=3 etc.
+ * ------------------------------------------------------------------ */
+.flexible #region-main {
+    -webkit-box-ordinal-group: 4;
+    -webkit-box-flex: 3;
+
+    -moz-box-ordinal-group: 4;
+    -moz-box-flex: 3;
+
+    -webkit-order: 3;
+    -webkit-flex: 3 1 auto;
+    -webkit-align-self: stretch;
+
+    -ms-flex-order: 3;
+    -ms-flex: 3 1 auto;
+    -ms-flex-item-align: stretch;
+
+    order: 3;
+    flex: 3 1 auto;
+    align-self: stretch;
+}
+.flexible #block-region-side-pre {
+    -webkit-box-ordinal-group: 2;
+    -webkit-box-flex: 1;
+
+    -moz-box-ordinal-group: 2;
+    -moz-box-flex: 1;
+
+    -webkit-order: 1;
+    -webkit-flex: 1 1 auto;
+    -webkit-align-self: stretch;
+
+    -ms-flex-order: 1;
+    -ms-flex: 1 1 auto;
+    -ms-flex-item-align: stretch;
+
+    order: 1;
+    flex: 1 1 auto;
+    align-self: stretch;
+}
+.flexible #block-region-side-post {
+    -webkit-box-ordinal-group: 6;
+    -webkit-box-flex: 1;
+
+    -moz-box-ordinal-group: 6;
+    -moz-box-flex: 1;
+
+    -webkit-order: 5;
+    -webkit-flex: 1 1 auto;
+    -webkit-align-self: stretch;
+
+    -ms-flex-order: 5;
+    -ms-flex: 1 1 auto;
+    -ms-flex-item-align: stretch;
+
+    order: 5;
+    flex: 1 1 auto;
+    align-self: stretch;
+}
+.flexible #block-region-side-pre.mainprepost, .flexible .mainside {
+    -webkit-box-ordinal-group: 5;
+    -moz-box-ordinal-group: 5;
+    -webkit-order: 4;
+    -ms-flex-order: 4;
+    order: 4;
+}
+.flexible #block-region-side-post.prepostmain, .flexible .sidemain {
+    -webkit-box-ordinal-group: 3;
+    -moz-box-ordinal-group: 3;
+    -webkit-order: 2;
+    -ms-flex-order: 2;
+    order: 2;
+}
+
+/* @Media Calls *
+ * ------------ */
+@media screen and (max-width:768px) {
+
+.flexible {
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -webkit-align-content: flex-start;
+    -ms-flex-direction: column;
+    -ms-flex-line-pack: start;
+
+    flex-direction: column;
+    align-content: flex-start;
+}
+.dir-rtl .flexible {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -webkit-flex-direction: column;
+    -webkit-align-content: flex-start;
+    -ms-flex-direction: column;
+    -ms-flex-line-pack: start;
+
+    flex-direction: column;
+    align-content: flex-start;
+}
+.flexible #region-main {
+    -webkit-box-ordinal-group: 2;
+    -webkit-box-flex: 1;
+    -moz-box-ordinal-group: 2;
+    -moz-box-flex: 1;
+    -webkit-order: 1;
+    -webkit-flex: 1 1 auto;
+    -webkit-align-self: stretch;
+    -ms-flex-order: 1;
+    -ms-flex: 1 1 auto;
+    -ms-flex-item-align: stretch;
+
+    order: 1;
+    flex: 1 1 auto;
+    align-self: stretch;
+}
+.flexible #block-region-side-pre, .flexible #block-region-side-pre.mainprepost, .flexible .mainside {
+    -webkit-box-ordinal-group: 3;
+    -webkit-box-flex: 2;
+    -moz-box-ordinal-group: 3;
+    -moz-box-flex: 2;
+    -webkit-order: 2;
+    -webkit-flex: 1 1 auto;
+    -webkit-align-self: stretch;
+    -ms-flex-order: 2;
+    -ms-flex: 1 1 auto;
+    -ms-flex-item-align: stretch;
+
+    order: 2;
+    flex: 1 1 auto;
+    align-self: stretch;
+}
+.flexible #block-region-side-post, .flexible #block-region-side-post.prepostmain, .flexible .sidemain {
+    -webkit-box-ordinal-group: 4;
+    -webkit-box-flex: 3;
+    -moz-box-ordinal-group: 4;
+    -moz-box-flex: 3;
+    -webkit-order: 3;
+    -webkit-flex: 1 1 auto;
+    -webkit-align-self: stretch;
+    -ms-flex-order: 3;
+    -ms-flex: 1 1 auto;
+    -ms-flex-item-align: stretch;
+
+    order: 3;
+    flex: 1 1 auto;
+    align-self: stretch;
+}
+
